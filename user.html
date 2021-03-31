@@ -1,0 +1,75 @@
+<!doctype html5>
+<html lang="en-US" dir="ltr">
+<head><title>workLoad()</title>
+<meta charset="utf-8">
+<link href="style_user_content.css" rel="stylesheet" type="text/css">
+<link href="user_hover_content.css" rel="stylesheet" type="text/css">
+<meta name="author" content="gautham mummadi">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head><body><script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<div class="main-content"><div id="content-one"><h1 style="float:left;font-size:15px;">Welcome</h1>
+<div class="dropdown">
+<p id="displayUserName" style="float:right;margin-top:10px;" class="dropbtn">loadUser()</p>
+<div class="dropdown-content" id="closeMenu"><br><a id="openProfile">Profile</a><a id="openMaps">Maps</a><a id="">About</a><a id="openMappuzzle">Map Puzzle</a><a id="signOutDialog">Logout</a></div></div></div></div>
+<div id="DialogBox">
+<button onclick="doSignOut()" id="logoutUser" style="padding:10px;background-color:#000;margin-top:-5px;border:none;float:left;border-radius:20px;color:white;font-family:'Syne Mono';outline:none;box-shadow:0px 0px 3px #000;">Logout</button><button id="doNull" style="float:right;padding:10px;background-color:#000;margin-top:-5px;outline:none;border:none;color:white;border-radius:20px;font-family:'Syne Mono';box-shadow:0px 0px 3px #000;">Cancel</button>
+</div>
+<!-- firebaseNode -->
+<br><script>const firebaseConfig = {apiKey: "AIzaSyBdTC_Yuk-HIvpMZI9G_SJZ_G4Yuvyy3Jg",authDomain: "dbmsprojectone.firebaseapp.com",projectId: "dbmsprojectone",storageBucket: "dbmsprojectone.appspot.com", messagingSenderId: "803492942678",
+appId: "1:803492942678:web:b08a765ab3aded91043cf7"}; firebase.initializeApp(firebaseConfig);</script><script>firebase.auth().onAuthStateChanged(firebaseUser=>{if(firebaseUser){console.log('User :- ' + firebaseUser + ' logged in to DbmsprojectWebsite');var user = firebase.auth().currentUser;if (user != null) {user.providerData.forEach(function (profile) {
+console.log("  Email: " + profile.email);/*document.getElementById('displayUserName').innerHTML=profile.email;*/});}}else{window.location.replace('index.html')}})
+function dosignOut(){const auth = firebase.auth();auth.signOut();}
+// function signOutDialog(){if(confirm('Logout ?')){console.log('user chose signOut');const auth = firebase.auth();auth.signOut();}else{console.log('user cancelled signOut operation')}}
+$(document).ready(function(){$("#DialogBox").hide();$("#signOutDialog").click(function(){$("#DialogBox").show();$("#closeMenu").hide()})})
+$(document).ready(function(){
+$("#doNull").click(function(){
+$("#DialogBox").hide();
+})
+$("#logoutUser").click(function(){
+const auth = firebase.auth();
+auth.signOut();
+})});
+</script>
+<div class="second-content">
+<h2>Hello there</h2>
+<p style="font-size:14px;">Our project is to create a mashed-up web application and it can search all the available restaurants nearby the place an user could search within an input field and display in a list and can rate it eventually</p>&nbsp;
+<h2>Instructions</h2>
+<p style="font-size:14px;">
+<ul style="list-style-type:none;">
+<li style="font-size:14px;">Top Right - Profile of user logged in currently </li><br>
+<li style="font-size:14px;">Top Right - Click on email to display options</li><br>
+<li style="font-size:14px;">Options -> Map -> can search restaurants</li>
+</ul>
+</p>&nbsp;
+<h2>Authentication</h2>
+<p style="font-size:12.5px;">
+we used firebase for secure authentication using AuthState Listener which handles user a single second on signed in page. So unknown user cannot open user page until he registers into database</p>
+<h2>Team</h2>
+<p style="font-size:12px;">Gopi Krishna \ Sai Krishna \ Gautham Reddy</p>
+<p id="userDetailName"></p>
+<script>
+var fDb = firebase.database();
+var reference = fDb.ref('users');
+reference.on('value',function(snapshot){
+snapshot.forEach(function(userSnapShots){
+document.getElementById('displayUserName').innerHTML=userSnapShots.val().txtUsername;
+document.title=userSnapShots.val().txtUsername;
+})})
+$(document).ready(function(){
+$("#openProfile").click(function(){
+window.location.href="profile.aspx";
+})
+$("#openMaps").click(function(){
+window.location.href="gmaps_theme=light.aspx"
+})
+$("#openMappuzzle").click(function(){
+window.location.href="loading_game.aspx"
+})
+})
+</script>
+</div>
+</body>
+</html>

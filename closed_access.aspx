@@ -1,0 +1,4 @@
+<!doctype html5><html lang="en-US"><head><script src="handle_unknown_users.min.js"></script><meta name="author" content="gautham mummadi"><noscript><meta http-equiv="refresh" content="0;url='no_script.html'"></noscript>
+<meta name="viewport" content="width=device-width,initial-scale=1"><style>@import url('https://fonts.googleapis.com/css?family=Syne+Mono');html{user-select:none;scroll-behavior: smooth;}
+body{background: linear-gradient(#141e30, #e95353);display:flex;font-family:'Syne Mono';color:white;user-select:none;justify-content:center;align-items:center;}
+</style></head><body><noscript>please enable javascript in your browser</noscript><div><p>restricting access while under development :)</p><pre style="text-align:center;">Team :- Gopi | SaiKrishna | Gautham</pre></div></body></html>

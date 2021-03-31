@@ -1,0 +1,51 @@
+<!doctype html5><html><head>
+<meta charset="utf-8">
+<meta name="author" content="gautham mummadi">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="description" content="personal dbms project developed by gautham mummadi">
+<meta property="og:url" content="https://dbmsprojectone.web.app">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dbms Project">
+<meta property="og:description" content="Dbms Project">
+<meta property="og:image" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://dbmsprojectone.web.app">
+<meta property="twitter:url" content="https://dbmsprojectone.web.app">
+<meta name="twitter:title" content="Dbms Project">
+<meta name="twitter:description" content="personal dbms project developed by gautham mummadi">
+<meta name="twitter:image" content="">
+<noscript><meta http-equiv="refresh" content="0;url='no_script.html'"></noscript>
+<link href="styles_form.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<link href="https://fonts.googleapis.com/css?family=Syne+Mono&display=swap" rel="stylesheet" type="text/css">
+</head><body>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+<div class="login-box">
+<h2>Login</h2><form>
+<div class="user-box">
+<input type="text" id="txtEmail" placeholder="Email" autocomplete="off" spellcheck="false">
+</div><div class="user-box">
+<input type="password" id="txtPassword" placeholder="Password" autocomplete="off" spellcheck="false"><br>
+<span id="result" style="color:white;"></span>
+</div><a id="submitCred">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+Submit
+</a><br>
+<p><span id="forgotPassword">forgotPassword?</span><span id="signUp">signUp?</span></p>
+<br><pre style="color:#fffc00;font-size:10px;text-align:center;">Team :- Gautham | SaiKrishna | GopiKrishna</pre>
+<pre id="validator" style="text-align:center;color:white;">validating...</pre>
+</form></div><script>const submitCred = document.getElementById('submitCred');const txtEmail   = document.getElementById('txtEmail');const txtPassword = document.getElementById('txtPassword');
+$('#txtEmail').keypress(function(e){if(e.which===32)return false;});$('#txtPassword').keypress(function(e){if(e.which===32)return false;});$(document).ready(function(){$("#forgotPassword").click(function(){window.location.href="forgot_password.html"})})
+$("#signUp").click(function(){window.location.href="enigma.html"})//  firebaseConfiguration 
+const firebaseConfig = {apiKey: "AIzaSyBdTC_Yuk-HIvpMZI9G_SJZ_G4Yuvyy3Jg",authDomain: "dbmsprojectone.firebaseapp.com",projectId: "dbmsprojectone",storageBucket: "dbmsprojectone.appspot.com", messagingSenderId: "803492942678",
+appId: "1:803492942678:web:b08a765ab3aded91043cf7"}; firebase.initializeApp(firebaseConfig);submitCred.addEventListener('click',e=>{const email=txtEmail.value;const pass=txtPassword.value;const fAuth = firebase.auth();const promiseSignIn = fAuth.signInWithEmailAndPassword(email,pass);
+promiseSignIn.catch(e=>{alert(e.message);console.log("Found error @ " + e.message)})}); document.title="Login";const fAuth = firebase.auth();fAuth.onAuthStateChanged(firebaseUser=>{if(firebaseUser){console.log('user has been logged in');window.location.replace('user.html');}else{console.log('No one\'s logged in')}})
+$(document).ready(function(){$("#validator").hide() /*but when clicks on submit validate */ 
+$("#submitCred").click(function(){$("#validator").show()})})
+</script>
+</body>
+</html>
